@@ -11,7 +11,11 @@ dotenv.config();
 const app = express();
 const PORT = 3001;
 
-app.use(cors());
+const corsOptions = {
+    origin: ["http://localhost:3000", "https://cegs0612.github.io/portfolioOfficial"],
+  };
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json())
 //conection to database
