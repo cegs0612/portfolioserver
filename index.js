@@ -10,20 +10,16 @@ dotenv.config();
 
 const app = express();
 const PORT = 3001;
-//, "https://cegs0612.github.io/portfolioOfficial"],
-/*const corsOptions = {
-    "origin": "http://localhost:3000",
-    "methods": "POST",
-  };*/
 
-const corsOptions = (req) =>{
-    const acceptedOrigin = "http://localhost:3000";
-    return req.header('origin') === acceptedOrigin? {origin:true}:{origin:false}
+const corsOptions = {
+    origin : ["https://cegs0612.github.io/portfolioOfficial/","http://localhost:3000"],
+    methods : "GET,POST"
 }
 
-//app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json())
+
 //conection to database
 
 mongoose.connect(process.env.DB_URI)
@@ -70,7 +66,7 @@ const sendEmail = async (html,subject) =>{
         html
     }
     transporter.sendMail(mailOptions,(info,error)=>{
-        if(error){
+         if(error){
             console.log('error',error);
         } else {
             console.log('mail sent',info.respose);
@@ -78,7 +74,12 @@ const sendEmail = async (html,subject) =>{
     })
 }
 
-app.post('/',cors(corsOptions), async (req , res) =>{
+app.get('/', async(req,res)=>{
+    console.log(req)
+    res.send("howdy")
+})
+app.post('/', async (req , res) =>{
+    console.log(req)
     const newEntry = new entryModel({
        entryDate: req.body.date,
        position: req.body.position,
@@ -97,7 +98,7 @@ app.post('/',cors(corsOptions), async (req , res) =>{
     await sendEmail(messageHTML,messageSubject);
     await newEntry.save();
     console.log(req.body);
-    res.send('data received');
+    res.send('Data received');
 });
 
 app.post('/message', async (req, res) => {
