@@ -10,9 +10,9 @@ dotenv.config();
 
 const app = express();
 const PORT = 3001;
-
+//, "https://cegs0612.github.io/portfolioOfficial"],
 const corsOptions = {
-    "origin": ["http://localhost:3000", "https://cegs0612.github.io/portfolioOfficial"],
+    "origin": "http://localhost:3000",
     "methods": "POST",
   };
 
