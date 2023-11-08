@@ -12,7 +12,8 @@ const app = express();
 const PORT = 3001;
 
 const corsOptions = {
-    origin: ["http://localhost:3000", "https://cegs0612.github.io/portfolioOfficial"],
+    "origin": ["http://localhost:3000", "https://cegs0612.github.io/portfolioOfficial"],
+    "methods": "POST",
   };
 
 app.use(cors(corsOptions));
