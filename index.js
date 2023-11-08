@@ -1,11 +1,11 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const nodemailer = require('nodemailer');
-const entryModel = require('./models/entry.js');
-const messageModel = require('./models/message.js');
-const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import nodemailer from "nodemailer";
+import entryModel from "./models/entry.js";
+import  messageModel  from "./models/message.js";
+import bodyParser from "body-parser";
+import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
