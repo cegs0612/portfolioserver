@@ -75,11 +75,10 @@ const sendEmail = async (html,subject) =>{
 }
 
 app.get('/', async(req,res)=>{
-    console.log(req)
+    console.log(req.body);
     res.send("howdy")
 })
 app.post('/', async (req , res) =>{
-    console.log(req)
     const newEntry = new entryModel({
        entryDate: req.body.date,
        position: req.body.position,
