@@ -11,12 +11,17 @@ dotenv.config();
 const app = express();
 const PORT = 3001;
 //, "https://cegs0612.github.io/portfolioOfficial"],
-const corsOptions = {
+/*const corsOptions = {
     "origin": "http://localhost:3000",
     "methods": "POST",
-  };
+  };*/
 
-app.use(cors(corsOptions));
+const corsOptions = (req) =>{
+    const acceptedOrigin = "http://localhost:3000";
+    return req.header('origin') === acceptedOrigin? {origin:true}:{origin:false}
+}
+
+//app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json())
 //conection to database
@@ -73,7 +78,7 @@ const sendEmail = async (html,subject) =>{
     })
 }
 
-app.post('/', async (req , res) =>{
+app.post('/',cors(corsOptions), async (req , res) =>{
     const newEntry = new entryModel({
        entryDate: req.body.date,
        position: req.body.position,
