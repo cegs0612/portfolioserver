@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3001;
 
 const corsOptions = {
     
-    origin : ["https://cegs0612.github.io/portfolioOfficial/","http://localhost:3000"],
+    origin : "*",//["https://cegs0612.github.io/portfolioOfficial/","http://localhost:3000"],
     methods : "GET,POST"
 }
 
